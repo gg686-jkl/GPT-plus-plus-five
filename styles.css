@@ -1,0 +1,77 @@
+:root {
+  color-scheme: dark;
+  --ink: #f4f0e8;
+  --muted: #a9a49b;
+  --paper: #111412;
+  --panel: #191d1a;
+  --line: #343a35;
+  --lime: #c7f36a;
+  --coral: #ff7657;
+  --max: 70rem;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 80% -10%, #294326 0, transparent 34rem),
+    linear-gradient(135deg, transparent 0 49%, #171b18 49% 51%, transparent 51%);
+}
+
+main { width: min(calc(100% - 2rem), var(--max)); margin: 0 auto; padding: 5rem 0 2rem; }
+
+.hero { max-width: 54rem; margin-bottom: 4rem; }
+.eyebrow, .step { color: var(--lime); font: 700 0.75rem/1.2 ui-monospace, monospace; letter-spacing: 0.13em; text-transform: uppercase; }
+h1 { margin: 0.5rem 0 1.25rem; font-size: clamp(3rem, 8vw, 6.8rem); line-height: 0.92; letter-spacing: -0.07em; }
+h2 { margin: 0.35rem 0 0; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1; letter-spacing: -0.04em; }
+.lede { max-width: 44rem; color: var(--muted); font-size: clamp(1.1rem, 2.4vw, 1.5rem); line-height: 1.5; }
+
+.card { border: 1px solid var(--line); background: color-mix(in srgb, var(--panel) 94%, transparent); padding: clamp(1.3rem, 4vw, 3rem); margin-bottom: 1rem; }
+.planner-card { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+form { display: grid; gap: 0.75rem; }
+label { color: var(--muted); font-size: 0.88rem; margin-top: 0.5rem; }
+input { width: 100%; border: 1px solid var(--line); border-radius: 0; background: #0d0f0e; color: var(--ink); padding: 0.9rem; font: inherit; }
+input:focus { outline: 2px solid var(--lime); outline-offset: 2px; }
+button { border: 0; background: var(--lime); color: #10130f; padding: 0.95rem 1.25rem; font: inherit; font-size: 0.86rem; font-weight: 800; line-height: 1; cursor: pointer; margin-top: 0.75rem; }
+button:hover { filter: brightness(1.08); }
+.error { color: var(--coral); min-height: 1.2em; margin: 0; }
+
+.timeline { display: grid; grid-template-columns: repeat(4, 1fr); margin: 2.5rem 0; }
+.timeline > div { position: relative; border-top: 1px solid var(--line); padding: 1.3rem 1rem 0 0; }
+.timeline .dot { position: absolute; width: 0.65rem; height: 0.65rem; border-radius: 50%; background: var(--ink); top: -0.35rem; left: 0; }
+.timeline .accent .dot { background: var(--coral); box-shadow: 0 0 0 5px color-mix(in srgb, var(--coral) 18%, transparent); }
+.timeline small, .prompt-box small { display: block; color: var(--muted); margin-bottom: 0.35rem; }
+.timeline strong { display: block; font-size: 0.95rem; line-height: 1.35; }
+
+.prompt-box { display: flex; align-items: end; justify-content: space-between; gap: 2rem; background: #0d0f0e; border-left: 3px solid var(--lime); padding: 1.25rem; }
+.prompt-box code { display: block; color: var(--ink); line-height: 1.5; white-space: normal; }
+.prompt-box button { flex: none; }
+.instructions { color: var(--muted); line-height: 1.7; padding-left: 1.3rem; margin: 2rem 0 0; }
+.instructions strong { color: var(--ink); }
+
+.explanation { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding: 5rem 0; }
+.notes { color: var(--muted); font-size: 1.05rem; line-height: 1.65; }
+footer { display: flex; flex-wrap: wrap; gap: 1rem 2rem; border-top: 1px solid var(--line); padding-top: 1.5rem; color: var(--muted); font-size: 0.82rem; }
+footer a { color: var(--ink); }
+
+[hidden] { display: none !important; }
+
+@media (max-width: 720px) {
+  main { padding-top: 3rem; }
+  .planner-card, .explanation { grid-template-columns: 1fr; gap: 1.5rem; }
+  .timeline { grid-template-columns: 1fr; margin-left: 0.3rem; }
+  .timeline > div { border-top: 0; border-left: 1px solid var(--line); padding: 0 0 1.7rem 1.3rem; }
+  .timeline .dot { top: 0.25rem; left: -0.35rem; }
+  .prompt-box { align-items: stretch; flex-direction: column; gap: 0.5rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card { animation: rise 450ms ease-out both; }
+  .result-card { animation-delay: 80ms; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+}
